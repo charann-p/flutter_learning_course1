@@ -1,26 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_learning_course1/views/data/notifiers.dart';
 
-class BottomBar extends StatefulWidget {
+class BottomBar extends StatelessWidget {
   const BottomBar({super.key});
 
   @override
-  State<BottomBar> createState() => _BottomBarState();
-}
-
-class _BottomBarState extends State<BottomBar> {
-  int curScreen = 0;
-  @override
   Widget build(BuildContext context) {
-    return NavigationBar(
-      destinations: [
-        NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
-        NavigationDestination(icon: Icon(Icons.person), label: 'Profile'),
-      ],
-      selectedIndex: curScreen,
-      onDestinationSelected: (value) {
-        setState(() {
-          curScreen = value;
-        });
+    return ValueListenableBuilder(
+      valueListenable: selectedPage,
+      builder: (context, value, child) {
+        NavigationBar(
+          destinations: [
+            NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
+            NavigationDestination(icon: Icon(Icons.person), label: 'Profile'),
+          ],
+          selectedIndex: selectedPage.value,
+          onDestinationSelected: (value) {
+            selectedPage.value = value;
+          },
+        );
       },
     );
   }
