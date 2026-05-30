@@ -17,45 +17,39 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark,
         ),
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Home App Test - final new'),
-          centerTitle: true,
-        ),
-        bottomNavigationBar: NavigationBar(
-          destinations: [
-            NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
-            NavigationDestination(icon: Icon(Icons.person), label: 'Account'),
-          ],
-          onDestinationSelected: (int value) {
-            print(value);
-          },
-          selectedIndex: 1,
-        ),
-        floatingActionButton: Column(
-          mainAxisSize: MainAxisSize.min,
-          // mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            FloatingActionButton(
-              onPressed: () {
-                print('Floating Action Button Pressed');
-              },
-              child: Icon(Icons.add),
-            ),
-            SizedBox(height: 16),
-            FloatingActionButton(
-              onPressed: () {
-                print('Floating Action Button Pressed');
-              },
-              child: Icon(Icons.add),
-            ),
-          ],
-        ),
-        drawer: SafeArea(
-          child: Drawer(child: ListTile(title: Text('Drawer child 1'))),
-        ),
-        body: Center(),
+      home: HomePageStateFul(),
+    );
+  }
+}
+
+class HomePageStateFul extends StatefulWidget {
+  const HomePageStateFul({super.key});
+
+  @override
+  State<HomePageStateFul> createState() => _HomePageStateFulState();
+}
+
+class _HomePageStateFulState extends State<HomePageStateFul> {
+  int currentIndex = 0;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Home App Test'), centerTitle: true),
+      bottomNavigationBar: NavigationBar(
+        destinations: [
+          NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
+          NavigationDestination(icon: Icon(Icons.person), label: 'Account'),
+        ],
+        onDestinationSelected: (int value) {
+          setState(() {
+            currentIndex = value;
+          });
+        },
+        selectedIndex: currentIndex,
       ),
+      body: currentIndex == 0
+          ? Center(child: Text('Current index is $currentIndex'))
+          : Center(child: Text('Current index is $currentIndex')),
     );
   }
 }
