@@ -51,13 +51,8 @@ class MyApp extends StatelessWidget {
             ),
           ],
         ),
-        drawer: Drawer(
-          child: Column(
-            children: [
-              DrawerHeader(child: Text('DrawerHeader')),
-              ListTile(title: Text('Drawer child 1')),
-            ],
-          ),
+        drawer: SafeArea(
+          child: Drawer(child: ListTile(title: Text('Drawer child 1'))),
         ),
         body: Center(),
       ),
