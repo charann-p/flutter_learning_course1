@@ -18,13 +18,13 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: Scaffold(
-        appBar: AppBar(title: Text('Home App'), centerTitle: true),
+        appBar: AppBar(title: Text('Home App Test - final'), centerTitle: true),
         bottomNavigationBar: NavigationBar(
           destinations: [
             NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
             NavigationDestination(icon: Icon(Icons.person), label: 'Account'),
           ],
-          // onDestinationSelected: {
+          // onDestinationSelected: (){
           //   print(object)
           // },
           selectedIndex: 1,
