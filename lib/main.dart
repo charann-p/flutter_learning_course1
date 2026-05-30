@@ -27,10 +27,29 @@ class MyApp extends StatelessWidget {
             NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
             NavigationDestination(icon: Icon(Icons.person), label: 'Account'),
           ],
-          // onDestinationSelected: (){
-          //   print(object)
-          // },
+          onDestinationSelected: (int value) {
+            print(value);
+          },
           selectedIndex: 1,
+        ),
+        floatingActionButton: Column(
+          mainAxisSize: MainAxisSize.min,
+          // mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            FloatingActionButton(
+              onPressed: () {
+                print('Floating Action Button Pressed');
+              },
+              child: Icon(Icons.add),
+            ),
+            SizedBox(height: 16),
+            FloatingActionButton(
+              onPressed: () {
+                print('Floating Action Button Pressed');
+              },
+              child: Icon(Icons.add),
+            ),
+          ],
         ),
         body: Center(),
       ),
