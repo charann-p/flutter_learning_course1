@@ -9,7 +9,7 @@ class BottomBar extends StatelessWidget {
     return ValueListenableBuilder(
       valueListenable: selectedPage,
       builder: (context, value, child) {
-        NavigationBar(
+        return NavigationBar(
           destinations: [
             NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
             NavigationDestination(icon: Icon(Icons.person), label: 'Profile'),
