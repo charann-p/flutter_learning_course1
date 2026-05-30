@@ -4,52 +4,42 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.teal,
+          seedColor: Colors.amberAccent,
           brightness: Brightness.dark,
         ),
       ),
-      home: HomePageStateFul(),
-    );
-  }
-}
-
-class HomePageStateFul extends StatefulWidget {
-  const HomePageStateFul({super.key});
-
-  @override
-  State<HomePageStateFul> createState() => _HomePageStateFulState();
-}
-
-class _HomePageStateFulState extends State<HomePageStateFul> {
-  int currentIndex = 0;
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Home App Test'), centerTitle: true),
-      bottomNavigationBar: NavigationBar(
-        destinations: [
-          NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
-          NavigationDestination(icon: Icon(Icons.person), label: 'Account'),
-        ],
-        onDestinationSelected: (int value) {
-          setState(() {
-            currentIndex = value;
-          });
-        },
-        selectedIndex: currentIndex,
+      home: Scaffold(
+        body: Center(child: Text('data')),
+        appBar: AppBar(
+          title: Text('My First App'),
+          centerTitle: true,
+          leading: Icon(Icons.account_balance_wallet_sharp),
+        ),
+        bottomNavigationBar: NavigationBar(
+          destinations: [
+            NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
+            NavigationDestination(icon: Icon(Icons.person), label: 'Profile'),
+          ],
+          selectedIndex: 0,
+          onDestinationSelected: (value) {
+            print(value);
+          },
+        ),
       ),
-      body: currentIndex == 0
-          ? Center(child: Text('Current index is $currentIndex'))
-          : Center(child: Text('Current index is $currentIndex')),
     );
   }
 }
