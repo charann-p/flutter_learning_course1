@@ -18,7 +18,10 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: Scaffold(
-        appBar: AppBar(title: Text('Home App Test - final'), centerTitle: true),
+        appBar: AppBar(
+          title: Text('Home App Test - final new'),
+          centerTitle: true,
+        ),
         bottomNavigationBar: NavigationBar(
           destinations: [
             NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
