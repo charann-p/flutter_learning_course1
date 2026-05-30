@@ -14,11 +14,33 @@ class WidgetTree extends StatelessWidget {
     return Scaffold(
       body: ValueListenableBuilder(
         valueListenable: selectedPage,
-        builder: (BuildContext context, dynamic value, Widget? child) {
-          return pages.elementAt(selectedPage.value);
+        builder: (BuildContext context, dynamic selectedPage, Widget? child) {
+          return pages.elementAt(selectedPage);
         },
       ),
-      appBar: AppBar(title: Text('My First App'), centerTitle: true),
+      appBar: AppBar(
+        title: Text('My First App'),
+        centerTitle: true,
+        actions: darkThemeNotifier.value == true
+            ? [
+                IconButton(
+                  onPressed: () {
+                    darkThemeNotifier.value = !darkThemeNotifier.value;
+                    print('Light mode');
+                  },
+                  icon: Icon(Icons.light_mode),
+                ),
+              ]
+            : [
+                IconButton(
+                  onPressed: () {
+                    darkThemeNotifier.value = !darkThemeNotifier.value;
+                    print('Dark mode');
+                  },
+                  icon: Icon(Icons.dark_mode),
+                ),
+              ],
+      ),
       bottomNavigationBar: BottomBar(),
     );
   }
