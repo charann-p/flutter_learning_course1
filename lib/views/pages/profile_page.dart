@@ -8,8 +8,48 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  TextEditingController controller = TextEditingController();
+  bool? isChecked = false;
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text('Profile Page'));
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          TextField(
+            controller: controller,
+            decoration: InputDecoration(border: OutlineInputBorder()),
+            onEditingComplete: () {
+              setState(() {});
+            },
+          ),
+          SizedBox(height: 20.0),
+          Text(controller.text),
+          SizedBox(height: 20.0),
+          Checkbox(
+            tristate: true,
+            value: isChecked,
+            onChanged: (bool? value) {
+              setState(() {
+                isChecked = value;
+              });
+            },
+          ),
+          SizedBox(height: 20.0),
+          CheckboxListTile(
+            title: Text('Check here'),
+            tristate: true,
+            value: isChecked,
+            onChanged: (bool? value) {
+              setState(() {
+                isChecked = value;
+              });
+            },
+          ),
+        ],
+      ),
+    );
   }
 }
