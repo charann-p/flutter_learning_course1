@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_learning_course1/widgets/hero_image.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key, required this.title});
@@ -109,6 +110,13 @@ class _SettingsPageState extends State<SettingsPage> {
               ElevatedButton(
                 onPressed: () {
                   print('Elevated Button Pressed');
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('This is a snackbar'),
+                      duration: Duration(seconds: 2),
+                      behavior: SnackBarBehavior.floating,
+                    ),
+                  );
                 },
                 child: Text('ElevatedButton'),
                 style: ElevatedButton.styleFrom(
@@ -119,6 +127,44 @@ class _SettingsPageState extends State<SettingsPage> {
               SizedBox(height: 20.0),
               OutlinedButton(
                 onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: Text('Alert Dialog Title'),
+                        actions: [
+                          BackButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ],
+                        content: SingleChildScrollView(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'This is the first element inside of the alert dialog',
+                              ),
+                              Text(
+                                'This is the second element inside of the alert dialog',
+                              ),
+                              Text(
+                                'This is the third element inside of the alert dialog',
+                              ),
+                              Text(
+                                'This is the fourth element inside of the alert dialog',
+                              ),
+                              SizedBox(height: 10.0),
+                              HeroImage(),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  );
                   print('Outlined Button Pressed');
                 },
                 child: Text('OutlinedButton'),
