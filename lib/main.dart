@@ -20,8 +20,8 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(
               seedColor: Colors.amberAccent,
               brightness: darkThemeNotifier.value == true
-              ? Brightness.dark
-              : Brightness.light
+                  ? Brightness.dark
+                  : Brightness.light,
             ),
           ),
           home: WidgetTree(),
