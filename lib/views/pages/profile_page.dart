@@ -9,7 +9,8 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   TextEditingController controller = TextEditingController();
-  bool? isChecked = false;
+  bool? isCheckboxChecked = false;
+  bool isSwitchOn = false;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -28,25 +29,41 @@ class _ProfilePageState extends State<ProfilePage> {
           SizedBox(height: 20.0),
           Text(controller.text),
           SizedBox(height: 20.0),
-          Checkbox(
+          Checkbox.adaptive(
             tristate: true,
-            value: isChecked,
+            value: isCheckboxChecked,
+            onChanged: (bool? value) => setState(() {
+              isCheckboxChecked = value;
+            }),
+            // onChanged: (bool? value) {
+            //   setState(() {
+            //     isCheckboxChecked = value;
+            //   });
+          ),
+          SizedBox(height: 20.0),
+          CheckboxListTile.adaptive(
+            title: Text('Check here'),
+            tristate: true,
+            value: isCheckboxChecked,
             onChanged: (bool? value) {
               setState(() {
-                isChecked = value;
+                isCheckboxChecked = value;
               });
             },
           ),
           SizedBox(height: 20.0),
-          CheckboxListTile(
-            title: Text('Check here'),
-            tristate: true,
-            value: isChecked,
-            onChanged: (bool? value) {
-              setState(() {
-                isChecked = value;
-              });
-            },
+          Switch.adaptive(
+            value: isSwitchOn,
+            onChanged: (bool value) => setState(() {
+              isSwitchOn = value;
+            }),
+          ),
+          SizedBox(height: 20.0),
+          SwitchListTile.adaptive(
+            value: isSwitchOn,
+            onChanged: (bool value) => setState(() {
+              isSwitchOn = value;
+            }),
           ),
         ],
       ),
